@@ -3,9 +3,63 @@
 		<title>Tic Tac Toe</title>
 	</head>
 	<body>
-		<div class="button-board"></div>
-		<div class="canvas-board" hidden></div>
+		<div class="button-board" id="bb"></div>
+		<div class="canvas-board" id="cb" hidden></div>
 	</body>
+	<style>
+		.button-board-row-column {
+			margin-top: 15px;
+			margin-bottom: 15px;
+			margin-left: 15px;
+			margin-right: 15px;
+		}
+	</style>
 	<script>
+		var buttons = 0;
+		var gh = 3;
+		var gw = 3;
+		var currentPlayer = "X";
+		const buttonBoard = document.getElementById("bb");
+		function checkVertical() {
+		}
+		function checkHorizontal() {
+		}
+		function checkDiagonal() {
+		}
+		function checkForAWin() {
+			checkVertical();
+			checkHorizontal();
+			checkDiagonal();
+		}
+		function playthedamngame(buttonid) { 
+			var xdvittu = document.getElementById("b"+buttonid).innerHTML;
+			if (xdvittu == "X" || xdvittu == "O") {
+				alert("try something else");
+			} else {
+				document.getElementById("b"+buttonid).innerHTML = currentPlayer;
+				if (currentPlayer == "X") {
+					currentPlayer = "O";
+				} else {
+					currentPlayer = "X";
+				}
+			}
+			checkForAWin();
+		}
+		function createButtonBoard(widthOfTheBoard, heightOfTheBoard) {
+			for (var rows = 0; rows < heightOfTheBoard; rows++) {
+				buttonBoard.innerHTML += "<div class=\"button-board-row\" id=r"+rows+" style=\"display: inline-block;\">\n";
+				for (var columns = 0; columns < widthOfTheBoard; columns++) {
+					buttons = buttons + 1;
+					var rowid = "r"+rows;
+					const rowtheboat = document.getElementById(rowid);
+					rowtheboat.innerHTML += "<div class=\"button-board-row-column\" id=b"+buttons+" onClick=\"playthedamngame("+buttons+")\">E</div>";
+				}
+				buttonBoard.innerHTML += "</div>\n";
+			}
+		}
+		function initializethegame(gwidth, gheight) {
+			createButtonBoard(gwidth, gheight);
+		}
+		initializethegame(gw, gh);
 	</script>
 </html>
